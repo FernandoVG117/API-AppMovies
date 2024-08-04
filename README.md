@@ -18,3 +18,6 @@
 * Express
 * Sequelize
 
+## API Documentation
+For detailed API endpoints and usage, refer to the 📃[API Documentation](https://documenter.getpostman.com/view/37160818/2sA3rwNaUp).
+
