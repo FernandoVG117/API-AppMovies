@@ -6,7 +6,7 @@ const routerMovie = require('./movie.router');
 const router = express.Router();
 
 router.use('/genres', routerGenre);
-router.use('/artists', routerArtist);
+router.use('/actors', routerArtist);
 router.use('/directors', routerDirector);
 router.use('/movies', routerMovie);
 
