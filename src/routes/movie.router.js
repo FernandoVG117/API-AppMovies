@@ -13,7 +13,7 @@ routerMovie.route('/:id/genres')
 routerMovie.route('/:id/directors')
     .post(setDirectors);
 
-routerMovie.route('/:id/artists')
+routerMovie.route('/:id/actors')
     .post(setArtists);
 
 routerMovie.route('/:id')
