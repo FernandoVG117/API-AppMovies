@@ -56,12 +56,12 @@ const setDirectors = catchError(async(req,res) => {
     return res.json(directors);
 });
 
-// movies/:id/artists
+// movies/:id/actors
 const setArtists = catchError(async(req,res) => {
     const { id } = req.params;
     const movies = await Movie.findByPk(id);
-    await movies.setArtists(req.body);
-    const artists = await movies.getArtists();
+    await movies.setActors(req.body);
+    const artists = await movies.getActors();
     return res.json(artists);
 });
 
