@@ -1,11 +1,11 @@
-const Artist = require("./Artist");
+const Actor = require("./Actor");
 const Director = require("./Director");
 const Genre = require("./Genre");
 const Movie = require("./Movie");
 
     //! /movies/:id/artists
-Movie.belongsToMany(Artist, {through: "movies_artists"});
-Artist.belongsToMany(Movie, {through: "movies_artists"});
+Movie.belongsToMany(Actor, {through: "movies_actors"});
+Actor.belongsToMany(Movie, {through: "movies_actors"});
 
     //! /movies/:id/directors
 Movie.belongsToMany(Director, {through: "movies_directors"});
