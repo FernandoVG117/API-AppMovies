@@ -61,8 +61,8 @@ const setActors = catchError(async(req,res) => {
     const { id } = req.params;
     const movies = await Movie.findByPk(id);
     await movies.setActors(req.body);
-    const artists = await movies.getActors();
-    return res.json(artists);
+    const actors = await movies.getActors();
+    return res.json(actors);
 });
 
 module.exports = {
