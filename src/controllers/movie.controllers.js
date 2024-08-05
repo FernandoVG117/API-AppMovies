@@ -57,7 +57,7 @@ const setDirectors = catchError(async(req,res) => {
 });
 
 // movies/:id/actors
-const setArtists = catchError(async(req,res) => {
+const setActors = catchError(async(req,res) => {
     const { id } = req.params;
     const movies = await Movie.findByPk(id);
     await movies.setActors(req.body);
@@ -73,5 +73,5 @@ module.exports = {
     update,
     setGenres,
     setDirectors,
-    setArtists,
+    setActors,
 }
