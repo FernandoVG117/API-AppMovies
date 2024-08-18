@@ -81,7 +81,7 @@ test("PUT --> BASE_URL/:id, should return statusCode 200, res.body.firstName ===
         .put(`${BASE_URL}/${directorId}`)
         .send(directorUpdate)
 
-        console.log(res.body)
+        // console.log(res.body)
 
         expect(res.status).toBe(200)
         expect(res.body).toBeDefined()
@@ -90,4 +90,14 @@ test("PUT --> BASE_URL/:id, should return statusCode 200, res.body.firstName ===
         expect(res.body.nationality).toBe(directorUpdate.nationality)
         expect(res.body.image).toBe(directorUpdate.image)
         expect(res.body.birthday).toBe(directorUpdate.birthday)
+})
+
+    // DELETE
+test("DELETE --> BASE_URL/:id, should return statusCode 204, res.body.length === 0", async() => {
+    const res = await request(app)
+        .delete(`${BASE_URL}/${directorId}`)
+
+        // console.log(res.body)
+
+        expect(res.status).toBe(204)
 })
