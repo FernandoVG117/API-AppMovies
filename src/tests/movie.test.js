@@ -25,4 +25,26 @@ test("POST --> BASE_URL, should return statusCode 201, and res.body.name === mov
         expect(res.status).toBe(201)
         expect(res.body).toBeDefined()
         expect(res.body.name).toBe(movie.name)
+        expect(res.body.image).toBe(movie.image)
+        expect(res.body.synopsis).toBe(movie.synopsis)
+        expect(res.body.releaseYear).toBe(movie.releaseYear)
+})
+
+    // GET --> (GetAll)
+test("GET --> BASE_URL, should return statusCode 200, and res.body.length === 1", async() => {
+    const res = await request(app)
+        .get(`${BASE_URL}`)
+
+        console.log(res.body)
+
+        expect(res.status).toBe(200)
+        expect(res.body).toBeDefined()
+        expect(res.body[0].name).toBe(movie.name)
+        expect(res.body[0].image).toBe(movie.image)
+        expect(res.body[0].synopsis).toBe(movie.synopsis)
+        expect(res.body[0].releaseYear).toBe(movie.releaseYear)
+
+        expect(res.body[0].genres).toHaveLength(0)
+        expect(res.body[0].directors).toHaveLength(0)
+        expect(res.body[0].actors).toHaveLength(0)
 })
