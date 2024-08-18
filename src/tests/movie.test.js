@@ -92,3 +92,11 @@ test("PUT --> BASE_URL/:id, should return statusCode 200, and res.body.name === 
         expect(res.body.synopsis).toBe(movieUpdate.synopsis)
         expect(res.body.releaseYear).toBe(movieUpdate.releaseYear)
 })
+
+    // DELETE
+test("DELETE --> BASE_URL/:id, should return statusCode 204", async() => {
+    const res = await request(app)
+        .delete(`${BASE_URL}/${movieId}`)
+
+        expect(res.status).toBe(204)
+})
