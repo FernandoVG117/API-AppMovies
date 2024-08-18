@@ -63,3 +63,13 @@ test("PUT -> BASE_URL/:id, should return statusCode 200, and res.body.name === g
         expect(res.status).toBe(200)
         expect(res.body.name).toBe(genreUpdate.name)
 })
+
+    // DELETE
+test("DELETE -> BASE_URL/:id, should return statusCode 204", async() => {
+    const res = await request(app)
+        .delete(`${BASE_URL}/${genreId}`)
+
+        // console.log(res.status)
+
+        expect(res.status).toBe(204)
+})
