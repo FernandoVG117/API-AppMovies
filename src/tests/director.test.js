@@ -21,7 +21,15 @@ test("POST --> BASE_URL, should return statusCode 201, and res.body.firstName ==
         .post(`${BASE_URL}`)
         .send(director)
 
-        console.log(res.body)
+        directorId = res.body.id
+
+        // console.log(res.body)
 
         expect(res.status).toBe(201)
+        expect(res.body).toBeDefined()
+        expect(res.body.firstName).toBe(director.firstName)
+        expect(res.body.lastName).toBe(director.lastName)
+        expect(res.body.nationality).toBe(director.nationality)
+        expect(res.body.image).toBe(director.image)
+        expect(res.body.birthday).toBe(director.birthday)
 })
