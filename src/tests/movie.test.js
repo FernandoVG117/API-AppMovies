@@ -2,6 +2,7 @@ require('../models');
 
 const request = require('supertest');
 const app = require('../app');
+const Genre = require('../models/Genre');
 
 let movieId;
 
@@ -92,6 +93,34 @@ test("PUT --> BASE_URL/:id, should return statusCode 200, and res.body.name === 
         expect(res.body.synopsis).toBe(movieUpdate.synopsis)
         expect(res.body.releaseYear).toBe(movieUpdate.releaseYear)
 })
+
+        // SetGenres --> /movies/:id/genres
+test("POST --> BASE_URL/:id/genres, sould return statusCode 200, and res.body.genres.length === 1", async() => {
+    const genre = {
+        name: "Fantasy",
+    }
+
+    const newGenre = await Genre.create(genre)
+
+    const res = await request(app)
+        .post(`${BASE_URL}/${movieId}/genres`)
+        .send([newGenre.id])
+
+        // console.log(res.body)
+
+        expect(res.status).toBe(200)
+        expect(res.body).toBeDefined()
+        expect(res.body).toHaveLength(1)
+
+        expect(res.body[0].id).toBeDefined()
+        expect(res.body[0].id).toBe(newGenre.id)
+
+    await newGenre.destroy()
+
+})
+
+        // SetDirectors --> /movies/:id/directors
+        // SetActors --> /movies/:id/actors
 
     // DELETE
 test("DELETE --> BASE_URL/:id, should return statusCode 204", async() => {
