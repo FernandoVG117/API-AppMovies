@@ -66,3 +66,28 @@ test("GET --> BASE_URL/:id, should return statusCode 200, and res.body.firstName
         expect(res.body.image).toBe(director.image)
         expect(res.body.birthday).toBe(director.birthday)
 })
+
+    // PUT -> (Update)
+test("PUT --> BASE_URL/:id, should return statusCode 200, res.body.firstName === directorUpdate.name", async() => {
+    const directorUpdate = {
+        firstName: 'Ignis',
+        lastName: 'Dragonite',
+        nationality: 'Teyvat',
+        image: 'ignisdrag.png',
+        birthday: '1978-02-02',
+    }
+
+    const res = await request(app)
+        .put(`${BASE_URL}/${directorId}`)
+        .send(directorUpdate)
+
+        console.log(res.body)
+
+        expect(res.status).toBe(200)
+        expect(res.body).toBeDefined()
+        expect(res.body.firstName).toBe(directorUpdate.firstName)
+        expect(res.body.lastName).toBe(directorUpdate.lastName)
+        expect(res.body.nationality).toBe(directorUpdate.nationality)
+        expect(res.body.image).toBe(directorUpdate.image)
+        expect(res.body.birthday).toBe(directorUpdate.birthday)
+})
