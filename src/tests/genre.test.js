@@ -42,8 +42,24 @@ test("GET -> BASE_URL/:id, should return statusCode 200, and res.body.name === g
     const res = await request(app)
         .get(`${BASE_URL}/${genreId}`)
 
-        console.log(res.body)
+        // console.log(res.body)
 
         expect(res.status).toBe(200)
         expect(res.body.name).toBe(genre.name)
+})
+
+    // PUT --> (Update)
+test("PUT -> BASE_URL/:id, should return statusCode 200, and res.body.name === genreUpdate.name", async() => {
+    const genreUpdate = {
+        name: "Comedy",
+    }
+
+    const res = await request(app)
+        .put(`${BASE_URL}/${genreId}`)
+        .send(genreUpdate)
+
+        // console.log(res.body)
+
+        expect(res.status).toBe(200)
+        expect(res.body.name).toBe(genreUpdate.name)
 })
