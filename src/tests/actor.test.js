@@ -94,4 +94,5 @@ test("DELETE --> BASE_URL/:id, should return statusCode 204, and return res.body
         .delete(`${BASE_URL}/${actorId}`)
 
         expect(res.status).toBe(204)
+        expect(res.body).toBeDefined()
 })

@@ -22,6 +22,7 @@ test("POST -> BASE_URL, should return statusCode 201, and res.body.name === genr
         // console.log(res.body)
 
         expect(res.status).toBe(201)
+        expect(res.body).toBeDefined()
 })
 
     // GET --> (GetAll)
@@ -45,6 +46,7 @@ test("GET -> BASE_URL/:id, should return statusCode 200, and res.body.name === g
         // console.log(res.body)
 
         expect(res.status).toBe(200)
+        expect(res.body).toBeDefined()
         expect(res.body.name).toBe(genre.name)
 })
 
@@ -61,6 +63,7 @@ test("PUT -> BASE_URL/:id, should return statusCode 200, and res.body.name === g
         // console.log(res.body)
 
         expect(res.status).toBe(200)
+        expect(res.body).toBeDefined()
         expect(res.body.name).toBe(genreUpdate.name)
 })
 
@@ -72,4 +75,5 @@ test("DELETE -> BASE_URL/:id, should return statusCode 204", async() => {
         // console.log(res.status)
 
         expect(res.status).toBe(204)
+        expect(res.body).toBeDefined()
 })

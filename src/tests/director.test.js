@@ -100,4 +100,5 @@ test("DELETE --> BASE_URL/:id, should return statusCode 204, res.body.length ===
         // console.log(res.body)
 
         expect(res.status).toBe(204)
+        expect(res.body).toBeDefined()
 })
