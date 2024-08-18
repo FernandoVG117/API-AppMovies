@@ -56,7 +56,7 @@ test("GET --> BASE_URL/:id, should return statusCode 200, and res.body.name === 
     const res = await request(app)
         .get(`${BASE_URL}/${movieId}`)
 
-        console.log(res.body)
+        // console.log(res.body)
 
         expect(res.status).toBe(200)
         expect(res.body).toBeDefined()
@@ -68,4 +68,27 @@ test("GET --> BASE_URL/:id, should return statusCode 200, and res.body.name === 
         expect(res.body.genres).toHaveLength(0)
         expect(res.body.directors).toHaveLength(0)
         expect(res.body.actors).toHaveLength(0)
+})
+
+    // PUT --> (Update)
+test("PUT --> BASE_URL/:id, should return statusCode 200, and res.body.name === movieUpdate.name", async() => {
+    const movieUpdate = {
+        name: 'Final Fantasy VII Advent Children',
+        image: 'finalfantasy7.png',
+        synopsis: 'The movie is set two years after Final Fantasy VII . A mysterious illness has spread against humanity, Cloud Strife and the children are infected.',
+        releaseYear: '2005-09-14',
+    }
+
+    const res = await request(app)
+        .put(`${BASE_URL}/${movieId}`)
+        .send(movieUpdate)
+
+        // console.log(res.body)
+
+        expect(res.status).toBe(200)
+        expect(res.body).toBeDefined()
+        expect(res.body.name).toBe(movieUpdate.name)
+        expect(res.body.image).toBe(movieUpdate.image)
+        expect(res.body.synopsis).toBe(movieUpdate.synopsis)
+        expect(res.body.releaseYear).toBe(movieUpdate.releaseYear)
 })
