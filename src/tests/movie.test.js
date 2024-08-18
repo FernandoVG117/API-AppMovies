@@ -4,6 +4,7 @@ const request = require('supertest');
 const app = require('../app');
 const Genre = require('../models/Genre');
 const Director = require('../models/Director');
+const Actor = require('../models/Actor');
 
 let movieId;
 
@@ -136,7 +137,7 @@ test("POST --> BASE_URL/:id/directors, should return statusCode 200, and res.bod
         .post(`${BASE_URL}/${movieId}/directors`)
         .send([newDirector.id])
 
-        console.log(res.body)
+        // console.log(res.body)
 
         expect(res.status).toBe(200)
         expect(res.body).toBeDefined()
@@ -148,7 +149,32 @@ test("POST --> BASE_URL/:id/directors, should return statusCode 200, and res.bod
 })
 
         // SetActors --> /movies/:id/actors
+test("POST --> BASE_URL/:id/actors, should return statusCode 200, and res.body.length === 1", async() => {
+    const actor = {
+        firstName: "Valentino",
+        lastName: "Rosales",
+        nationality: "Austalian",
+        image: "valenros.png",
+        birthday: "2020-02-02",
+    }
 
+    const newActor = await Actor.create(actor)
+
+    const res = await request(app)
+        .post(`${BASE_URL}/${movieId}/actors`)
+        .send([newActor.id])
+
+        // console.log(res.body)
+
+        expect(res.status).toBe(200)
+        expect(res.body).toBeDefined()
+        expect(res.body).toHaveLength(1)
+        expect(res.body[0]).toBeDefined()
+        expect(res.body[0].id).toBe(newActor.id)
+
+    await newActor.destroy()
+})
+        
     // DELETE
 test("DELETE --> BASE_URL/:id, should return statusCode 204", async() => {
     const res = await request(app)
