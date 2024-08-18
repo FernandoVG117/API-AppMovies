@@ -87,3 +87,11 @@ test("PUT -> BASE_URL/:id, should return statusCode 200, and res.body.name === a
         expect(res.body.image).toBe(actorUpdate.image)
         expect(res.body.birthday).toBe(actorUpdate.birthday)
 })
+
+    // DELETE 
+test("DELETE --> BASE_URL/:id, should return statusCode 204, and return res.body.length ===0", async() => {
+    const res = await request(app)
+        .delete(`${BASE_URL}/${actorId}`)
+
+        expect(res.status).toBe(204)
+})
